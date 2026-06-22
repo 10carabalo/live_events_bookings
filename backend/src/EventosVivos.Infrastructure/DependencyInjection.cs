@@ -1,4 +1,8 @@
+using EventosVivos.Domain.Abstractions;
+using EventosVivos.Domain.Repositories;
 using EventosVivos.Infrastructure.Persistence;
+using EventosVivos.Infrastructure.Persistence.Repositories;
+using EventosVivos.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +17,9 @@ public static class DependencyInjection
     {
         services.AddDbContext<AppDbContext>(options =>
             options.UseSqlite(configuration.GetConnectionString("Default")));
+
+        services.AddScoped<IVenueRepository, VenueRepository>();
+        services.AddSingleton<IClock, SystemClock>();
 
         return services;
     }
