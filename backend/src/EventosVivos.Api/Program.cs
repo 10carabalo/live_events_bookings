@@ -1,4 +1,5 @@
 using EventosVivos.Api.Errors;
+using EventosVivos.Application;
 using EventosVivos.Infrastructure;
 using EventosVivos.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,9 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(allowedOrigins)
               .AllowAnyHeader()
               .AllowAnyMethod()));
+
+// Application (use cases)
+builder.Services.AddApplication();
 
 // Infrastructure (DbContext, repositories, clock)
 builder.Services.AddInfrastructure(builder.Configuration);
