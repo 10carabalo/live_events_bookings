@@ -1,0 +1,37 @@
+schema: spec-driven
+
+context: |
+  Project: EventosVivos — core reservation system for a cultural-events startup. Goals: prevent
+  overselling, detect venue schedule conflicts, and automate reservation/payment validation.
+
+  Tech stack:
+  - Backend: .NET 10 (C# 14), ASP.NET Core Web API, Clean Architecture (Domain / Application /
+    Infrastructure / Api), EF Core 10 + SQLite, FluentValidation, xUnit + FluentAssertions + Moq.
+  - Frontend: Angular 22 (standalone-by-default components + signals, zoneless change detection),
+    Angular Material, typed Reactive Forms, HttpClient, Jest for unit tests.
+  - All code, comments, documentation, identifiers, and commit messages in English.
+
+  Project specs (single source of truth): All artifact creation and implementation MUST follow the
+  project's technical context in docs/ and ai-specs/. Read and apply these when creating or
+  implementing:
+  - docs/base-standards.md — core principles, TDD, language standards, links to other standards
+  - docs/backend-standards.md — .NET 10 Clean Architecture, EF Core, API, testing, security
+  - docs/frontend-standards.md — Angular 22, signals, Material, Jest
+  - docs/data-model.md — domain entities (Venue, Event, Reservation), business rules RN-01…RN-07
+  - docs/api-spec.yml — REST API contract (OpenAPI)
+  - docs/documentation-standards.md — documentation structure and maintenance
+  - docs/openspec-tasks-mandatory-steps.md — required steps when creating/updating tasks.md
+
+  For implementation: adopt the relevant agent from ai-specs/agents/ (backend-developer.md for
+  backend, frontend-developer.md for frontend). Use ai-specs/skills/ for workflow guidance when
+  applicable. Mirrored copies live under .claude/ (Windows: real copies, not symlinks).
+
+rules:
+  _global:
+    - Before creating any artifact, read and apply docs/base-standards.md.
+    - For backend artifacts, read docs/backend-standards.md and adopt ai-specs/agents/backend-developer.md.
+    - For frontend artifacts, read docs/frontend-standards.md and adopt ai-specs/agents/frontend-developer.md.
+    - Use docs/api-spec.yml and docs/data-model.md for API and data consistency in specs and tasks.
+    - Enforce business rules RN-01…RN-07 and functional requirements RF-01…RF-06 from the domain docs.
+  tasks:
+    - Follow docs/openspec-tasks-mandatory-steps.md when creating or updating tasks.md.
