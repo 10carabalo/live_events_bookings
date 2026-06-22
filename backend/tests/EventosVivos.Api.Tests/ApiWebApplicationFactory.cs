@@ -28,7 +28,10 @@ public sealed class ApiWebApplicationFactory : WebApplicationFactory<Program>
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        if (disposing && File.Exists(_dbPath))
-            File.Delete(_dbPath);
+        if (!disposing) return;
+        // Suppress IOException on Windows — SQLite WAL files may still be open briefly.
+        try { if (File.Exists(_dbPath)) File.Delete(_dbPath); } catch (IOException) { }
+        try { if (File.Exists(_dbPath + "-shm")) File.Delete(_dbPath + "-shm"); } catch (IOException) { }
+        try { if (File.Exists(_dbPath + "-wal")) File.Delete(_dbPath + "-wal"); } catch (IOException) { }
     }
 }
